@@ -62,9 +62,4 @@ typings/
 
 # Serverless directories
 .serverless
-
-lib
-doc
-tis
-api
 .idea
