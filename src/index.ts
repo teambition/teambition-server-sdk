@@ -1,4 +1,4 @@
-import * as DataFactory from './datafactory'
+import { DataFactory } from './datafactory'
 
 export {
   DataFactory,

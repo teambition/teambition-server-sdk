@@ -1,3 +1,8 @@
+
+/**
+ * 数据工厂，对数据进行加工、处理
+ * @class DataFactory
+ */
 export class DataFactory {
   private raw: any
 
@@ -5,16 +10,28 @@ export class DataFactory {
     this.raw = raw
   }
 
-  async JobSlice(job: any, capacity: number = 200) {
-    if (Array.isArray(this.raw)) {
+  /**
+   * 数据分片请求获取
+   * @param {function} job
+   * @param {number} [capacity=200]
+   * @returns {Promise<any>}
+   * @memberof DataFactory
+   */
+  async JobSlice(job: any, capacity: number = 200): Promise<any> {
+    if (!Array.isArray(this.raw)) {
       throw new Error('raw must be an array')
     }
+    if (typeof job !== 'function') {
+      throw new Error('job must be a func')
+    }
+
     // 分片请求
     const dataSize = this.raw.length
     let ret = []
     let result
     let index = 0
 
+    // 保证顺序性
     while (true) {
       if (capacity >= dataSize) {
         result = await job(this.raw.slice(index))
