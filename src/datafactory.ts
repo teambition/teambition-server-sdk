@@ -29,19 +29,20 @@ export class DataFactory {
     const dataSize = this.raw.length
     let ret = []
     let result
-    let index = 0
+    let start = 0
+    let end = capacity
 
     // 保证顺序性
     while (true) {
-      if (capacity >= dataSize) {
-        result = await job(this.raw.slice(index))
+      if (end >= dataSize) {
+        result = await job(this.raw.slice(start))
         ret = ret.concat(result)
         break
       } else {
-        result = await job(this.raw.slice(index, capacity))
+        result = await job(this.raw.slice(start, end))
         ret = ret.concat(result)
-        index = capacity
-        capacity += capacity
+        start = end
+        end = capacity + end
       }
     }
     return ret
