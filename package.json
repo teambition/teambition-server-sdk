@@ -1,0 +1,24 @@
+{
+  "name": "teambition-server-sdk",
+  "version": "0.0.1",
+  "description": "Javascript SDK for teambition server",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teambition/teambition-server-sdk.git"
+  },
+  "author": "richardwei1995@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teambition/teambition-server-sdk/issues"
+  },
+  "homepage": "https://github.com/teambition/teambition-server-sdk#readme",
+  "devDependencies": {
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.3"
+  }
+}
