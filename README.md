@@ -21,3 +21,25 @@ datafactory.JobSlice(request)
 ```
 
 ### 官方 API
+
+封装 Teambition API，请至 [https://docs.teambition.com/](https://docs.teambition.com/) 查阅 API 目录
+
+如果你是第三方开发者，需要自建应用，请前往 [Teambition 开发者中心](https://developer.teambition.com/)
+
+```js
+// TS DEMO
+import * as TeambitionSDK from 'teambition-server-sdk'
+
+const teambitionSDK = new TeambitionSDK.Client.Task()
+return teambitionSDK
+  // optional 可选的，假如你是私有部署或其它，请填入正确的地址 
+  .setUrl('add your custom url')
+  // optional
+  .setHeader({
+    // optional
+    cookie: 'your cookie'
+    // optional
+    Authorization: 'your access token',
+  })
+  .createOne(task)
+```
