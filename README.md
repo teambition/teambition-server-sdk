@@ -51,7 +51,7 @@ return teambitionSDK
 [npm-url]: https://www.npmjs.com/package/teambition-server-sdk
 [npm-image]: https://img.shields.io/npm/v/teambition-server-sdk.svg
 
-[travis-image]: https://travis-ci.org/teambition/teambition-server-sdk.svg?branch=master
+[travis-image]: https://travis-ci.org/teambition/teambition-server-sdk.svg
 
 [downloads-url]: https://npmjs.org/package/teambition-server-sdk
 [downloads-image]: https://img.shields.io/npm/dm/teambition-server-sdk.svg?style=flat-square
