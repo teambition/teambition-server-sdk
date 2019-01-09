@@ -5,9 +5,11 @@
  */
 export class DataFactory {
   private raw: any
+  private opts: object
 
-  constructor (raw: any) {
+  constructor (raw: any, opts?: object) {
     this.raw = raw
+    this.opts = opts
   }
 
   /**
@@ -17,7 +19,7 @@ export class DataFactory {
    * @returns {Promise<any>}
    * @memberof DataFactory
    */
-  async JobSlice(job: any, capacity: number = 200): Promise<any> {
+  async JobSlice(job: any,  capacity: number = 200, needReturn: boolean = true): Promise<any> {
     if (!Array.isArray(this.raw)) {
       throw new Error('raw must be an array')
     }
@@ -26,23 +28,21 @@ export class DataFactory {
     }
 
     // 分片请求
-    const dataSize = this.raw.length
+    const rawSize: number = this.raw.length
     let ret = []
-    let result
-    let start = 0
-    let end = capacity
+    let result: [any]
+    let cursor = 0
 
     // 保证顺序性
     while (true) {
-      if (end >= dataSize) {
-        result = await job(this.raw.slice(start))
-        ret = ret.concat(result)
+      if (cursor >= rawSize) {
         break
       } else {
-        result = await job(this.raw.slice(start, end))
-        ret = ret.concat(result)
-        start = end
-        end = capacity + end
+        result = await job(this.raw.slice(cursor, cursor + capacity), this.opts)
+        cursor += capacity
+        if (needReturn) {
+          ret = ret.concat(result)
+        }
       }
     }
     return ret
